@@ -213,7 +213,7 @@ export function shouldNotifyEmail({
 
 	// no user or room preference
 	if (emailNotifications == null) {
-		if (disableAllMessageNotifications && !isHighlighted && !hasMentionToUser && !hasReplyToThread) {
+		if (disableAllMessageNotifications && !isHighlighted && !hasMentionToUser && !hasReplyToThread && roomType !== 'p') { // modified
 			return false;
 		}
 
@@ -223,5 +223,5 @@ export function shouldNotifyEmail({
 		}
 	}
 
-	return (roomType === 'd' || isHighlighted || emailNotifications === 'all' || hasMentionToUser || (!disableAllMessageNotifications && hasMentionToAll)) && (!isThread || hasReplyToThread);
+	return (roomType === 'd' || roomType === 'p' || isHighlighted || emailNotifications === 'all' || hasMentionToUser || (!disableAllMessageNotifications && hasMentionToAll)) && (!isThread || hasReplyToThread); // modified
 }

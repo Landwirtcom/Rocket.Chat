@@ -157,7 +157,7 @@ export const sendNotification = async ({
 		isThread,
 	})) {
 		receiver.emails.some((email) => {
-			if (email.verified) {
+			if (email.verified && email.address !== "test@landwirt.com") {
 				queueItems.push({
 					type: 'email',
 					data: getEmailData({
