@@ -168,7 +168,7 @@
 		"core-js": "^2.5.7",
 		"cors": "^2.8.4",
 		"csv-parse": "^4.0.1",
-		"emailreplyparser": "^0.0.5",
+		"emailreplyparser": "github:Landwirtcom/emailreplyparser",
 		"emojione": "^4.5.0",
 		"eslint-plugin-import": "^2.19.1",
 		"express": "^4.17.1",
