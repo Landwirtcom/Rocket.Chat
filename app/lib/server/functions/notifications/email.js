@@ -74,7 +74,7 @@ function getEmailContent({ message, user, room }) {
 			content += `<br/><br/>${ s.escapeHTML(message.attachments[0].description) }`;
 		}
 
-		return `${ fileHeader }:<br><img src="cid:image"><br/><br/>${ content }`;
+		return `${ fileHeader }:<br><img src="cid:image" style="max-width:80%"><br/><br/>${ content }`;
 	}
 
 	if (!settings.get('Email_notification_show_message')) {
@@ -159,7 +159,7 @@ export function getEmailData({
 			room_path,
 		},
 		headers: {},
-		attachments: {},
+		attachments: [],
 	};
 	if (message.file) {
 		email.attachments = [{'filename': `${ s.escapeHTML(message.file.name) }`, 'path': '/data/images/'+message.file._id, 'cid':'image'}];
