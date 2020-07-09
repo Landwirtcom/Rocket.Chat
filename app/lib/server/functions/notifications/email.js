@@ -9,6 +9,8 @@ import { metrics } from '../../../../metrics';
 import { callbacks } from '../../../../callbacks';
 import { getURL } from '../../../../utils/server';
 
+//const fs = require('fs');
+
 let advice = '';
 let goToMessage = '';
 Meteor.startup(() => {
@@ -72,7 +74,7 @@ function getEmailContent({ message, user, room }) {
 			content += `<br/><br/>${ s.escapeHTML(message.attachments[0].description) }`;
 		}
 
-		return `${ fileHeader }:<br/><br/>${ content }`;
+		return `${ fileHeader }:<br><img src="cid:image"><br/><br/>${ content }`;
 	}
 
 	if (!settings.get('Email_notification_show_message')) {
@@ -157,7 +159,11 @@ export function getEmailData({
 			room_path,
 		},
 		headers: {},
+		attachments: {},
 	};
+	if (message.file) {
+		email.attachments = [{'filename': `${ s.escapeHTML(message.file.name) }`, 'path': '/data/images/'+message.file._id, 'cid':'image'}];
+	}
 
 	if (sender.emails?.length > 0) {
 		const [senderEmail] = sender.emails;
